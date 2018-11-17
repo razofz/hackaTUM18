@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="static/dropdown.css">
     </head>
     <body>
         <div class="form-group" id="user_input">
@@ -8,9 +9,17 @@
             <form action="" method='POST'>
                 <p>From:</p> <input type="text" class="form-control" id="from">
                 <p>To:</p> <input type="text" class="form-control" id="to"><br>
+                <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Car:
                 </button> <br><br>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="cars_menu">
+                        <a class="dropdown-item" >Action</a>
+                        <a class="dropdown-item" >Another action</a>
+                        <a class="dropdown-item" >Something else here</a>
+                </div>
+            </div>
+
 
                 <button type="button" class="btn btn-success" id='trigger'>See, which one is cheap!</button>
             </form>
@@ -33,12 +42,14 @@
                 </thead>
                 <tbody>
                 </tbody>
-        </div>
+                <!-- dropdown menu -->
 
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
         <script>
         $(".form-control").css("width","100%")
         $("#user_input").css({"position":"absolute","left":"40%","top":"10%"})
@@ -54,6 +65,10 @@
             })
             $(".ui-helper-hidden-accessible").hide()
         } );
+        /*var cars = ["Golf","Astra","Passat","Corsa","Polo","3er","A4","Insignia","C-Klasse"]
+        for(int i = 0; i <cars.length; i++){
+            $("#cars_menu").append("<p>menu</p>")
+        }*/
 
 
         </script>
