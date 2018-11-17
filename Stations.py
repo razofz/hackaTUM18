@@ -17,6 +17,23 @@ class Station:
         self.longitude = longitude
         self.ring = ring
 
+
+def getStations():
+    ifile = open('testdata.csv', "r")
+    read = csv.reader(ifile)
+    i = 0
+    array = []
+    for row in read:
+        a = ''.join(row).split(";")
+        ring = a[6].split(",")
+        if (a[3] == "München"):
+            i = i + 1
+            array.append(Station(a[1], float(a[9])/pow(10,8), float(a[10])/pow(10,8), ring[0]))
+            #print(float(a[9])/pow(10,8))
+            #print(ring[0])
+    return array
+
+
 #get the distance between stations (KM)
 def getStationsDistance(station1, station2):
     #xDif = abs(station1.latitude - station2.latitude)
