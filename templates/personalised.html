@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<div class="form-group" id="user_input">
+  <!--action must be determined and must locate the python file, in which the users inputs needed-->
+  <form action="" method='POST'>
+    <p>From:</p> <input type="text" class="form-control" id="from" name="from">
+    <p>To:</p> <input type="text" class="form-control" id="to" name="to"><br>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p id="model">Please choose your car</p>
+      </button>
+      <div class="dropdown-content" id="drop_downcars">
+      </div>
+    </div><br><br>
+    <button type="button" class="btn btn-success" id='trigger'>See which one is the cheapest!</button>
+  </form>
+</div>
+
+<div id="output_screen">
+  <table id="result" class="table">
+    <thead>
+      <tr>
+        <th>If you choose going with <br> <p style="color:orange;">bike:</p></th>
+        <th>If you choose going with <br> <p style='color:red;'>car:</p></th>
+        <th>If you choose going with <br> <p style="color:green;">public transport:</p></th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <!-- dropdown menu -->
+</div>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --!>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> --!>
+
+<script>
+    $(".form-control").css("width","100%")
+    $("#user_input").css({"left":"40%","top":"10%"})
+    $("#trigger").css("border-radius","25%")
+    $("#output_screen").css({"top":"60%","left":"30%"})
+    $( function() {
+        var stations = ["Marienplatz","Odeonsplatz","Malatya" ];
+        $( "#from" ).autocomplete({
+            source :stations
+        });
+        $("#to").autocomplete({
+            source: stations
+        })
+        $(".ui-helper-hidden-accessible").hide()
+    } );
+    var cars = ["Small Car","Family Car","SUV","Family Bus","Pickup"]
+    for(var i = 0; i <cars.length; i++){
+        $("#drop_downcars").append("<a href ='#' class='clickcar' id='"+cars[i]+"'>"+cars[i]+"</a>")
+    }
+    $(".clickcar").click(function(){
+        $("#model").replaceWith("<p id='model'>"+this.id+"</p>")
+    })
+</script>
+
+{% endblock %}
