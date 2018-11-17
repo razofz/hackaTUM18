@@ -22,8 +22,8 @@ class Car:
 class Station:
     def __init__(self, name, longitude, latitude, ring):
         self.name = name
-        self.latitude = latitude
         self.longitude = longitude
+        self.latitude = latitude
         self.ring = ring
 
 
@@ -67,13 +67,23 @@ def getStationsDistance(station1, station2):
     distance = R * c
 
     #print("Result:", distance)
-    return distance
     return distance * 1.2
 
 #get Monthly ticket price of 2 different stations
 def getMonthlyPriceTransportation(station1, station2):
     array = [55.20, 66.60, 79.10, 90.40, 103.70, 116.50, 127.80, 140.50, 152.50, 163.40, 175.10, 188.00, 201.30, 212.50, 225.60]
+    marienplatz = (48.13643422, 11.57765115)
+    print(station1.latitude)
+    address1 = (station1.longitude, station1.latitude)
+    address2 = (station2.longitude, station2.latitude)
+    angle = find_angle(address1, marienplatz, address2)
+    print(angle)
+    if(angle < 30):
 
+    elif(angle < 90):
+        y = 0
+    else:
+        z =0
     if (abs(station1.ring - station2.ring) == 0):
        return array[0]
     else:
@@ -88,7 +98,10 @@ def getAllCars():
 
 
 
+a = getAllCars()
 
+print(a[0].getMonthlyPriceGas(10))
+print(a[0].getMonthlyLossofValue(10))
 
 
 
@@ -108,10 +121,29 @@ print(getMonthlyPriceTransportation(stat1, stat2))
 
 '''
 
+print (find_angle((12.92473, 77.6183), (12.92512, 77.61923), (12.92541, 77.61985)))
+
 #prints all the starion names
 allStations = getStations()
 for stationNames in allStations:
     print(stationNames.name)
 
-'''
 
+
+
+
+a = getStations()
+print(a[0].name)
+
+
+stat1 = Station("Marien", 48.13916696, 11.56524034, 1)
+stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
+print(getMonthlyPriceTransportation(stat1, stat2))
+
+stat1 = Station("Marien", 48.13916696, 11.56524034, 1)
+stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 1)
+compareStations(stat1, stat2)
+
+#marien = Stations("marienplatz", 48.13, 11.57, 1)
+#print ("The station " + marien.name)
+'''
