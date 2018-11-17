@@ -4,22 +4,23 @@
 
 <div class="form-group" id="user_input">
   <!--action must be determined and must locate the python file, in which the users inputs needed-->
-  <form action="" method='POST'>
+  <form method='POST'> 
     <p>From:</p> <input type="text" class="form-control" id="from" name="from">
     <p>To:</p> <input type="text" class="form-control" id="to" name="to"><br>
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <input class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <p id="model">Please choose your car</p>
       </button>
-      <div class="dropdown-content" id="drop_downcars">
-      </div>
+      <select class="dropdown-content" name="dropdowncars" id="drop_downcars">
+      </select>
     </div><br><br>
-    <button type="button" class="btn btn-success" id='trigger'>See which one is the cheapest!</button>
+    <input type="submit" class="btn btn-success" id='trigger' value="See which one is the cheapest!" />
   </form>
 </div>
 
+{% if post %}
 <div id="output_screen">
-  <table id="result" class="table">
+  <table id="post" class="table">
     <thead>
       <tr>
         <th>If you choose going with <br> <p style="color:orange;">bike:</p></th>
@@ -28,10 +29,16 @@
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <th>Bikes?</th>
+        <th>{{ car_monthly }}</th>
+        <th>{{ public_transport_monthly }}</th>
+      </tr>
     </tbody>
   </table>
   <!-- dropdown menu -->
 </div>
+{% endif %}
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --!>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -55,7 +62,8 @@
     } );
     var cars = ["Small Car","Family Car","SUV","Family Bus","Pickup"]
     for(var i = 0; i <cars.length; i++){
-        $("#drop_downcars").append("<a href ='#' class='clickcar' id='"+cars[i]+"'>"+cars[i]+"</a>")
+        $("#drop_downcars").append("<option class='clickcar' id='"+cars[i]+"'>"+cars[i]+"</option>")
+        // $("#drop_downcars").append("<option type="button" class='clickcar' id='"+cars[i]+"'>"+cars[i]+"</option>")
     }
     $(".clickcar").click(function(){
         $("#model").replaceWith("<p id='model'>"+this.id+"</p>")
