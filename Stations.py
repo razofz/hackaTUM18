@@ -80,12 +80,14 @@ def getAllCars():
 
     return array
 
-def find_angle( p0, p1, p2 ):
+def findAngle( p0, p1, p2 ):
     a = (p1[0]-p0[0])**2 + (p1[1]-p0[1])**2
     b = (p1[0]-p2[0])**2 + (p1[1]-p2[1])**2
     c = (p2[0]-p0[0])**2 + (p2[1]-p0[1])**2
     return acos( (a+b-c) / sqrt(4*a*b) ) * 180/pi
 
+def getRings(station1, station2):
+    p0 = []
 '''
 
 #prints all the starion names
