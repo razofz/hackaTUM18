@@ -3,12 +3,21 @@ from math import sin, cos, sqrt, atan2, radians
 
 class Car:
 
-    def __init__(self, type, fuelConsume, gasperkm, carPrice, insurancePrice):
+    def __init__(self,id, type, gasPerKm, costPerKm):
+        self.id = id
         self.type = type
-        self.fuelconsume = fuelConsume
-        self.gasperkm = gasperkm
-        self.carPrice = carPrice
-        self.insurancePrice = insurancePrice
+        self.gasPerKm = gasPerKm
+        self.costPerKm = costPerKm
+
+    def getCost(self,kind):
+        if kind == "gasPrize":
+            return self.gasPerKm*1.56
+        elif kind == "overallPrize":
+            return self.costPerKm
+
+    def getId(self):
+        return self.id
+
 
 class Station:
     def __init__(self, name, longitude, latitude, ring):
@@ -49,3 +58,16 @@ def getMonthlyPrice(station1, station2):
     else:
         return array[abs(station1.ring - station2.ring)-1]
 
+
+class AllCars:
+    def __init__(self):
+        self.cars = [Car(0, "Golf", .046, .44),Car(1, "Astra", .061, .44 ),Car(2, "Passat", .043, .58 ), Car(3, "Corsa", .052, .37), Car(4, "Polo", .042, .33), Car(5, "3er", .063, .70), Car(6, "A4", .049, .62), Car(7, "Insignia", .070, .64), Car(8, "Cklasse", .070, .69)]
+
+    def getCarCosts(self, id, kind, distance):
+        for car in self.cars:
+            if car.getId() == id:
+                return car.getCost(kind)*distance
+
+a = AllCars()
+
+print(a.getCarCosts(4,"overallPrize",11.4))
