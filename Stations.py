@@ -68,6 +68,7 @@ def getStationsDistance(station1, station2):
 
     #print("Result:", distance)
     return distance
+    return distance * 1.2
 
 #get Monthly ticket price of 2 different stations
 def getMonthlyPrice(station1, station2):
