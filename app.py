@@ -3,11 +3,12 @@ application = Flask(__name__)
 
 @application.route("/")
 def landing():
-	return render_template('index.html', page="home")
+    avg_saved_per_month = 35
+    return render_template('index.html', avg_saved=avg_saved_per_month)
 
 @application.route("/yousave")
-def kontakt():
-	return render_template('yousave.html', page="yousave")
+def yousave():
+    return render_template('yousave.html', page="yousave")
 
 if __name__ == "__main__":
-	application.run(host='0.0.0.0')
+    application.run(host='127.0.0.1')
