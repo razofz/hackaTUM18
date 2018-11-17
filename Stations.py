@@ -1,5 +1,5 @@
 import csv
-from math import sin, cos, sqrt, atan2, radians
+from math import sin, cos, sqrt, atan2, radians, acos, pi
 
 class Car:
 
@@ -82,7 +82,7 @@ def getMonthlyPrice(station1, station2):
 
 #adac.de for loss of value
 def getAllCars():
-    array = [Car("Small Cars", 0.052, 30, 0.338),Car("Family Car", 0.055, 30, 263.73), Car("SUV", 0.0661, 30, 411.29), Car("Family Bus", 0.0701, 30, 445.00), Car("Pickup", 0.0801, 30, 466.29)]
+    array = [Car("Small Cars", 0.052, 30, 0.338),Car("Family Car", 0.055, 30, 0.572), Car("SUV", 0.0661, 30, 0.868), Car("Family Bus", 0.0701, 30, 0.764), Car("Pickup", 0.0801, 30, 0.745)]
 
     return array
 
@@ -90,6 +90,13 @@ def getAllCars():
 
 
 
+
+
+def find_angle( p0, p1, p2 ):
+    a = (p1[0]-p0[0])**2 + (p1[1]-p0[1])**2
+    b = (p1[0]-p2[0])**2 + (p1[1]-p2[1])**2
+    c = (p2[0]-p0[0])**2 + (p2[1]-p0[1])**2
+    return acos( (a+b-c) / sqrt(4*a*b) ) * 180/pi
 
 '''
 
