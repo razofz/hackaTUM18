@@ -3,12 +3,21 @@ from math import sin, cos, sqrt, atan2, radians
 
 class Car:
 
-    def __init__(self, type, fuelConsume, gasperkm, carPrice, insurancePrice):
+    def __init__(self, type, gasPerKm, insurancePrize, loseValue):
+        self.id = id
         self.type = type
-        self.fuelconsume = fuelConsume
-        self.gasperkm = gasperkm
-        self.carPrice = carPrice
-        self.insurancePrice = insurancePrice
+        self.gasPerKm = gasPerKm
+        self.insurancePrize = insurancePrize
+        self.loseValue = loseValue
+
+    def getMonthlyPrice(self, km):
+        return self.gasPerKm * km * 22 * 2 * 1.55
+
+    def getMonthlyLossofValue(self, km):
+        return self.loseValue * km * 22 * 2
+
+
+
 
 class Station:
     def __init__(self, name, longitude, latitude, ring):
@@ -16,6 +25,26 @@ class Station:
         self.latitude = latitude
         self.longitude = longitude
         self.ring = ring
+
+
+def getStations():
+    ifile = open('alldata.csv', "r")
+    read = csv.reader(ifile)
+    i = 0
+    array = []
+    for row in read:
+        a = ''.join(row).split(";")
+        ring = a[6].split(",")
+        if (a[3] == "München"):
+            i = i + 1
+            try:
+                array.append(Station(a[1], float(a[9])/pow(10,8), float(a[10])/pow(10,8), ring[0]))
+            except ValueError:
+                y = 0
+            #print(float(a[9])/pow(10,8))
+            #print(ring[0])
+    return array
+
 
 #get the distance between stations (KM)
 def getStationsDistance(station1, station2):
@@ -39,6 +68,7 @@ def getStationsDistance(station1, station2):
 
     #print("Result:", distance)
     return distance
+    return distance * 1.2
 
 #get Monthly ticket price of 2 different stations
 def getMonthlyPrice(station1, station2):
@@ -48,4 +78,25 @@ def getMonthlyPrice(station1, station2):
        return array[0]
     else:
         return array[abs(station1.ring - station2.ring)-1]
+
+
+#adac.de for loss of value
+def getAllCars():
+    array = [Car("Small Cars", 0.052, 30, 0.338),Car("Family Car", 0.055, 30, 263.73), Car("SUV", 0.0661, 30, 411.29), Car("Family Bus", 0.0701, 30, 445.00), Car("Pickup", 0.0801, 30, 466.29)]
+
+    return array
+
+
+
+
+
+
+'''
+
+#prints all the starion names
+allStations = getStations()
+for stationNames in allStations:
+    print(stationNames.name)
+
+'''
 
