@@ -1,5 +1,4 @@
-# HackaTUM 2018 
-# CarSpar
+# HackaTUM 2018 - CarSpar
 
 This is the repo for our solution to the **City of Munich** challenge.
 
