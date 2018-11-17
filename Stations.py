@@ -16,6 +16,12 @@ class Car:
     def getMonthlyLossofValue(self, km):
         return self.loseValue * km * 22 * 2
 
+    def getDailyPriceGas(self, km):
+        return self.gasPerKm * km * 2 * 1.55
+
+    def getDailyLossofValue(self, km):
+        return self.loseValue * km * 2
+
 class Station:
     def __init__(self, name, longitude, latitude, ring):
         self.name = name
