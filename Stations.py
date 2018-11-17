@@ -3,20 +3,20 @@ from math import sin, cos, sqrt, atan2, radians
 
 class Car:
 
-    def __init__(self,id, type, gasPerKm, costPerKm):
+    def __init__(self, type, gasPerKm, insurancePrize, loseValue):
         self.id = id
         self.type = type
         self.gasPerKm = gasPerKm
-        self.costPerKm = costPerKm
+        self.insurancePrize = insurancePrize
+        self.loseValue = loseValue
 
-    def getCost(self,kind):
-        if kind == "gasPrize":
-            return self.gasPerKm*1.56
-        elif kind == "overallPrize":
-            return self.costPerKm
+    def getMonthlyPrice(self, km):
+        return self.gasPerKm * km * 22 * 2 * 1.55
 
-    def getId(self):
-        return self.id
+    def getMonthlyLossofValue(self, km):
+        return self.loseValue * km * 22 * 2
+
+
 
 
 class Station:
@@ -79,18 +79,16 @@ def getMonthlyPrice(station1, station2):
         return array[abs(station1.ring - station2.ring)-1]
 
 
-class AllCars:
-    def __init__(self):
-        self.cars = [Car(0, "Golf", .046, .44),Car(1, "Astra", .061, .44 ),Car(2, "Passat", .043, .58 ), Car(3, "Corsa", .052, .37), Car(4, "Polo", .042, .33), Car(5, "3er", .063, .70), Car(6, "A4", .049, .62), Car(7, "Insignia", .070, .64), Car(8, "Cklasse", .070, .69)]
+#adac.de for loss of value
+def getAllCars():
+    array = [Car("Small Cars", 0.052, 30, 0.338),Car("Family Car", 0.055, 30, 263.73), Car("SUV", 0.0661, 30, 411.29), Car("Family Bus", 0.0701, 30, 445.00), Car("Pickup", 0.0801, 30, 466.29)]
 
-    def getCarCosts(self, id, kind, distance):
-        for car in self.cars:
-            if car.getId() == id:
-                return car.getCost(kind)*distance
+    return array
 
-#a = AllCars()
 
-#print(a.getCarCosts(4,"overallPrize",11.4))
+
+
+
 
 '''
 
