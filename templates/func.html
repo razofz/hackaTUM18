@@ -1,24 +1,21 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="static/dropdown.css">
+        <link rel="stylesheet" href="static/css/dropdown.css">
     </head>
     <body>
         <div class="form-group" id="user_input">
             <!--action must be determined and must locate the python file, in which the users inputs needed-->
             <form action="" method='POST'>
-                <p>From:</p> <input type="text" class="form-control" id="from">
-                <p>To:</p> <input type="text" class="form-control" id="to"><br>
+                <p>From:</p> <input type="text" class="form-control" id="from" name="from">
+                <p>To:</p> <input type="text" class="form-control" id="to" name="to"><br>
                 <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Car:
-                </button> <br><br>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="cars_menu">
-                        <a class="dropdown-item" >Action</a>
-                        <a class="dropdown-item" >Another action</a>
-                        <a class="dropdown-item" >Something else here</a>
-                </div>
-            </div>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <p id="model">Please choose your car</p>
+                    </button>
+                    <div class="dropdown-content" id="drop_downcars">
+                    </div>
+                </div><br><br>
 
 
                 <button type="button" class="btn btn-success" id='trigger'>See, which one is cheap!</button>
@@ -28,20 +25,14 @@
             <table id="result" class="table">
                 <thead>
                     <tr>
-                        <th>Our Recommendation</th>
+                        <th>If you choose going with <br> <p style="color:orange;">bike:</p></th>
+                        <th>If you choose going with <br> <p style='color:red;'>car:</p></th>
+                        <th>If you choose going with <br> <p style="color:green;">public transport:</p></th>
                     </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
-            <table id="other_poss" class="table">
-                <thead>
-                    <tr>
-                        <th>The other possibilities are:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
                 <!-- dropdown menu -->
 
         </div>
@@ -54,7 +45,7 @@
         $(".form-control").css("width","100%")
         $("#user_input").css({"position":"absolute","left":"40%","top":"10%"})
         $("#trigger").css("border-radius","25%")
-        $("#output_screen").css({"position":"absolute","top":"50%","left":"40%"})
+        $("#output_screen").css({"position":"absolute","top":"60%","left":"30%"})
         $( function() {
             var stations = ["Marienplatz","Odeonsplatz","Malatya" ];
             $( "#from" ).autocomplete({
@@ -65,10 +56,13 @@
             })
             $(".ui-helper-hidden-accessible").hide()
         } );
-        /*var cars = ["Golf","Astra","Passat","Corsa","Polo","3er","A4","Insignia","C-Klasse"]
-        for(int i = 0; i <cars.length; i++){
-            $("#cars_menu").append("<p>menu</p>")
-        }*/
+        var cars = ["Small Car","Family Car","SUV","Family Bus","Pickup"]
+        for(var i = 0; i <cars.length; i++){
+            $("#drop_downcars").append("<a href ='#' class='clickcar' id='"+cars[i]+"'>"+cars[i]+"</a>")
+        }
+        $(".clickcar").click(function(){
+            $("#model").replaceWith("<p id='model'>"+this.id+"</p>")
+        })
 
 
         </script>
