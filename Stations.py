@@ -28,7 +28,7 @@ class Station:
 
 
 def getStations():
-    ifile = open('testdata.csv', "r")
+    ifile = open('alldata.csv', "r")
     read = csv.reader(ifile)
     i = 0
     array = []
@@ -37,7 +37,10 @@ def getStations():
         ring = a[6].split(",")
         if (a[3] == "München"):
             i = i + 1
-            array.append(Station(a[1], float(a[9])/pow(10,8), float(a[10])/pow(10,8), ring[0]))
+            try:
+                array.append(Station(a[1], float(a[9])/pow(10,8), float(a[10])/pow(10,8), ring[0]))
+            except ValueError:
+                y = 0
             #print(float(a[9])/pow(10,8))
             #print(ring[0])
     return array
@@ -85,6 +88,16 @@ class AllCars:
             if car.getId() == id:
                 return car.getCost(kind)*distance
 
-a = AllCars()
+#a = AllCars()
 
 print(a.getCarCosts(4,"overallPrize",11.4))
+
+'''
+
+#prints all the starion names
+allStations = getStations()
+for stationNames in allStations:
+    print(stationNames.name)
+
+'''
+
