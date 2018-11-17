@@ -1,4 +1,5 @@
 import csv
+from math import sin, cos, sqrt, atan2, radians
 
 class Car:
 
