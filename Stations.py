@@ -10,7 +10,7 @@ class Car:
         self.insurancePrize = insurancePrize
         self.loseValue = loseValue
 
-    def getMonthlyPrice(self, km):
+    def getMonthlyPriceGas(self, km):
         return self.gasPerKm * km * 22 * 2 * 1.55
 
     def getMonthlyLossofValue(self, km):
@@ -71,7 +71,7 @@ def getStationsDistance(station1, station2):
     return distance * 1.2
 
 #get Monthly ticket price of 2 different stations
-def getMonthlyPrice(station1, station2):
+def getMonthlyPriceTransportation(station1, station2):
     array = [55.20, 66.60, 79.10, 90.40, 103.70, 116.50, 127.80, 140.50, 152.50, 163.40, 175.10, 188.00, 201.30, 212.50, 225.60]
 
     if (abs(station1.ring - station2.ring) == 0):
