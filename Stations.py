@@ -90,7 +90,7 @@ class AllCars:
 
 #a = AllCars()
 
-print(a.getCarCosts(4,"overallPrize",11.4))
+#print(a.getCarCosts(4,"overallPrize",11.4))
 
 '''
 
