@@ -93,10 +93,18 @@ def getAllCars():
 
 
 def find_angle( p0, p1, p2 ):
-    a = (p1[0]-p0[0])**2 + (p1[1]-p0[1])**2
-    b = (p1[0]-p2[0])**2 + (p1[1]-p2[1])**2
-    c = (p2[0]-p0[0])**2 + (p2[1]-p0[1])**2
-    return acos( (a+b-c) / sqrt(4*a*b) ) * 180/pi
+    try:
+        a = (p1[0]-p0[0])**2 + (p1[1]-p0[1])**2
+        b = (p1[0]-p2[0])**2 + (p1[1]-p2[1])**2
+        c = (p2[0]-p0[0])**2 + (p2[1]-p0[1])**2
+        return acos( (a+b-c) / sqrt(4*a*b) ) * 180/pi
+    except ZeroDivisionError:
+        return 0;
+
+stat1 = Station("Marien", 48.13916696, 11.56524034, 1)
+stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
+print(getMonthlyPriceTransportation(stat1, stat2))
+
 
 '''
 
