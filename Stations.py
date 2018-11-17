@@ -74,15 +74,15 @@ def getMonthlyPriceTransportation(station1, station2):
     angle = find_angle(address1, marienplatz, address2)
     print(angle)
     if(angle < 30):
-
+        if (abs(station1.ring - station2.ring) == 0):
+            return array[0]
+        else:
+            return array[abs(station1.ring - station2.ring) - 1]
     elif(angle < 90):
-        y = 0
+        return max(station1.ring, station2.ring)-4
     else:
-        z =0
-    if (abs(station1.ring - station2.ring) == 0):
-       return array[0]
-    else:
-        return array[abs(station1.ring - station2.ring)-1]
+        return max(station1.ring, station2.ring)
+
 
 #adac.de for loss of value
 def getAllCars():
