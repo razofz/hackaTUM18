@@ -16,16 +16,12 @@ class Car:
     def getMonthlyLossofValue(self, km):
         return self.loseValue * km * 22 * 2
 
-
-
-
 class Station:
     def __init__(self, name, longitude, latitude, ring):
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
         self.ring = ring
-
 
 def getStations():
     ifile = open('alldata.csv', "r")
@@ -44,7 +40,6 @@ def getStations():
             #print(float(a[9])/pow(10,8))
             #print(ring[0])
     return array
-
 
 #get the distance between stations (KM)
 def getStationsDistance(station1, station2):
@@ -79,18 +74,11 @@ def getMonthlyPriceTransportation(station1, station2):
     else:
         return array[abs(station1.ring - station2.ring)-1]
 
-
 #adac.de for loss of value
 def getAllCars():
     array = [Car("Small Cars", 0.052, 30, 0.338),Car("Family Car", 0.055, 30, 0.572), Car("SUV", 0.0661, 30, 0.868), Car("Family Bus", 0.0701, 30, 0.764), Car("Pickup", 0.0801, 30, 0.745)]
 
     return array
-
-
-
-
-
-
 
 def find_angle( p0, p1, p2 ):
     a = (p1[0]-p0[0])**2 + (p1[1]-p0[1])**2
