@@ -7,7 +7,7 @@ stations_array=getStations()
 
 @application.route("/")
 def landing():
-    avg_saved_per_month = 35
+    avg_saved_per_month = 52
     return render_template('index.html', avg_saved=avg_saved_per_month)
 
 @application.route("/personalised", methods=['GET', 'POST'])
