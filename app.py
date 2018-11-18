@@ -11,23 +11,17 @@ def landing():
 
 @application.route("/personalised", methods=['GET', 'POST'])
 def personalised():
+    for station in array:
+        stations_array.append(station.name)
+
     if request.method == 'GET':
-        return render_template('personalised.html', post=False)
+        return render_template('personalised.html', post=False, stations=stations_array)
     else:
         # car.getMonthlyValue()
 
         return render_template('personalised.html', car_monthly=request.form['from'], 
-                public_transport_monthly=request.form['dropdowncars'], post=True)
-@application.route("/func")
-def func():
-    return render_template('func.html', page="func")
-@application.route("/func")
-def stations():
-
-    for station in array:
-        stations_array.append(station.name)
-
-    return render_template('func.html', stations=stations_array)
+                public_transport_monthly=request.form['dropdowncars'], post=True, 
+                stations=stations_array)
 
 if __name__ == "__main__":
     application.run(host='127.0.0.1')
