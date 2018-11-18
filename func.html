@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="form-group" id="user_input">
+            <!--action must be determined and must locate the python file, in which the users inputs needed-->
+            <form action="" method='POST'>
+                <p>From:</p> <input type="text" class="form-control" id="from">
+                <p>To:</p> <input type="text" class="form-control" id="to"><br>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Car:
+                </button> <br><br>
+
+                <button type="button" class="btn btn-success" id='trigger'>See, which one is cheap!</button>
+            </form>
+        </div>
+        <div id="output_screen">
+            <table id="result" class="table">
+                <thead>
+                    <tr>
+                        <th>Our Recommendation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <table id="other_poss" class="table">
+                <thead>
+                    <tr>
+                        <th>The other possibilities are:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script>
+        $(".form-control").css("width","100%")
+        $("#user_input").css({"position":"absolute","left":"40%","top":"10%"})
+        $("#trigger").css("border-radius","25%")
+        $("#output_screen").css({"position":"absolute","top":"50%","left":"40%"})
+        $( function() {
+            var stations = ["Marienplatz","Odeonsplatz","Malatya" ];
+            $( "#from" ).autocomplete({
+                source :stations
+            });
+            $("#to").autocomplete({
+                source: stations
+            })
+            $(".ui-helper-hidden-accessible").hide()
+        } );
+
+
+        </script>
+    <p id="stations">{{stations}}</p>
+    </body>
+</html>
