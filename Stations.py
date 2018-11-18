@@ -102,23 +102,17 @@ def getStationsDistance(station1, station2):
 #get Monthly ticket price of 2 different stations
 def getMonthlyPriceTransportation(station1, station2):
     array = [55.20, 66.60, 79.10, 90.40, 103.70, 116.50, 127.80, 140.50, 152.50, 163.40, 175.10, 188.00, 201.30, 212.50, 225.60]
-    marienplatz = (48.13643422, 11.57765115)
-    print(station1.latitude)
-    address1 = (station1.longitude, station1.latitude)
-    address2 = (station2.longitude, station2.latitude)
-    angle = find_angle(address1, marienplatz, address2)
-    print(angle)
-    if(angle < 30):
-
-        if (abs(station1.ring - station2.ring) == 0):
-            return array[0]
-        else:
-            return array[abs(station1.ring - station2.ring) - 1]
-        x = 0
-    elif(angle < 90):
-        return array[max(station1.ring, station2.ring)-5]
+    dist = getStationsDistance(station1,station2)
+    marien = Station("Mrienplatz", 48.13643422, 11.57765115, 1)
+    disttoMarien = getStationsDistance(station1,marien)
+    if disttoMarien<dist:
+        return max(station1.ring, station2.ring)
+    elif (abs(station1.ring - station2.ring) == 0):
+        return array[0]
     else:
-        return array[max(station1.ring, station2.ring)-1]
+        return array[abs(station1.ring - station2.ring) - 1]
+
+
 
 
 #adac.de for loss of value
@@ -127,45 +121,21 @@ def getAllCars():
 
     return array
 
-def findAngle( p0, p1, p2 ):
-    a = (p1[0]-p0[0])**2 + (p1[1]-p0[1])**2
-    b = (p1[0]-p2[0])**2 + (p1[1]-p2[1])**2
-    c = (p2[0]-p0[0])**2 + (p2[1]-p0[1])**2
-    return acos( (a+b-c) / sqrt(4*a*b) ) * 180/pi
-
-def find_angle( p0, p1, p2 ):
-    try:
-        a = (p1[0]-p0[0])**2 + (p1[1]-p0[1])**2
-        b = (p1[0]-p2[0])**2 + (p1[1]-p2[1])**2
-        c = (p2[0]-p0[0])**2 + (p2[1]-p0[1])**2
-        return acos( (a+b-c) / sqrt(4*a*b) ) * 180/pi
-    except ZeroDivisionError:
-        return 0;
-
-stat1 = Station("Marien", 50.13916696, 11.56524034, 1)
-stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
-print(getMonthlyPriceTransportation(stat1, stat2))
-
-allStations = getStations()
-for stationNames in allStations:
-    print(stationNames.name)
 
 
-def getPrize(station1, station2):
-    p0 = [station1.longitude,station1.latitude]
-    p1 = [48.1364342160178, 11.56524034 ]
-    p2 = [station1.longitude, station2.latitude]
+def getDailyPrice(station1, station2):
 
-    a = find_angle(p0,p1,p2)
-    rings = 0
-    if a<30 or a>330:
+
+    dist = getStationsDistance(station1, station2)
+    marien = Station("Mrienplatz", 48.13643422, 11.57765115, 1)
+    disttoMarien = getStationsDistance(station1, marien)
+    if disttoMarien < dist:
+        rings = max(station1.ring, station2.ring)
+    elif (abs(station1.ring - station2.ring) == 0):
+        rings = 1
+    else:
         rings = abs(station1.ring - station2.ring)
-    elif ((a>=30) and (a<60)) or (a>=300 and a<330):
-        rings = max(station1.ring , station2.ring) - 3
-    elif a>=60 and a<300:
-        rings = max(station1.ring , station2.ring)
 
-    prize = 0
     if (station1.ring%4 == 0):
         if rings<=4:
             prize = 2.90
@@ -184,17 +154,25 @@ def getPrize(station1, station2):
             prize = 8.70
         elif 1==1:
             prize = 11.60
+
+    return prize
+    '''
     print(a)
     print(rings)
     print(prize)
-
-
-stat1 = Station("Marien", 49.13916696, 11.56524034, 1)
+    '''
+stat1 = Station("Marien", 50.13916696, 11.56524034, 1)
 stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
-print(getPrize(stat1, stat2))
+print(getDailyPrice(stat1, stat2))
+
 
 
 '''
+
+allStations = getStations()
+for stationNames in allStations:
+    print(stationNames.name)
+
 
 a = getAllCars()
 
