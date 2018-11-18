@@ -39,7 +39,7 @@ def getStations():
         for row in spamreader:
             a = ''.join(row).split(";")
             ring = a[6].split(",")
-            if (a[3] == "MÃ¼nchen"):
+            if (a[3] == "München"):
                 
                 i = i + 1
 
@@ -47,7 +47,7 @@ def getStations():
                     b = a[10]
                     if a[10][-1:] == ",":
                         b = a[10][:-1]
-                    array.append(Station(a[1], float(a[9].replace(',','.')), float(b.replace(',','.')), ring[0]))
+                    array.append(Station(a[1], float(a[9].replace(',','.')), float(b.replace(',','.')), int(ring[0])))
                     #print(b)
                 except ValueError:
                     y = 0
@@ -113,7 +113,17 @@ def getMonthlyPriceTransportation(station1, station2):
         return array[abs(station1.ring - station2.ring) - 1]
 
 
-
+def getCar(name):
+    if name == "Small Car":
+        return Car("Small Cars", 0.052, 30, 0.338)
+    elif name == "Family Car":
+        return Car("Family Car", 0.055, 30, 0.572)
+    elif name == "SUV":
+        return Car("SUV", 0.0661, 30, 0.868)
+    elif name == "Family Bus":
+        return Car("Family Bus", 0.0701, 30, 0.764)
+    elif name == "Pickup":
+        return Car("Pickup", 0.0801, 30, 0.745)
 
 #adac.de for loss of value
 def getAllCars():
@@ -175,8 +185,8 @@ def getStation(name):
     return 0
 
 
-allStations = getStations()
-print(getStation("Mar").name)
+# allStations = getStations()
+# print(getStation("Mar").name)
 '''
 
 allStations = getStations()

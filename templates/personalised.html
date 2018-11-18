@@ -20,16 +20,21 @@
   <table id="post" class="table">
     <thead>
       <tr>
-        <th>If you choose going with <br> <p style="color:orange;">bike:</p></th>
-        <th>If you choose going with <br> <p style='color:red;'>car:</p></th>
+        <th></th>
+        <th>If you choose going by <br> <p style='color:red;'>car:</p></th>
         <th>If you choose going with <br> <p style="color:green;">public transport:</p></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>Bikes?</th>
+        <th>Monthly</th>
         <th>{{ car_monthly }}</th>
         <th>{{ public_transport_monthly }}</th>
+      </tr>
+      <tr>
+        <th>Daily</th>
+        <th>{{ car_daily }}</th>
+        <th>{{ public_transport_daily }}</th>
       </tr>
     </tbody>
   </table>
