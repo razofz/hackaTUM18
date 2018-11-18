@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
-import stations
+from stations import getStations
 application = Flask(__name__)
+
 array = []
-stations_array=[];
-stations_array=stations.getStations()
+stations_array=getStations()
 
 @application.route("/")
 def landing():
@@ -12,17 +12,17 @@ def landing():
 
 @application.route("/personalised", methods=['GET', 'POST'])
 def personalised():
-    for station in array:
-        stations_array.append(station.name)
+    for station in stations_array:
+        array.append(station.name)
 
     if request.method == 'GET':
-        return render_template('personalised.html', post=False, stations=stations_array)
+        return render_template('personalised.html', post=False, stations=array)
     else:
         # car.getMonthlyValue()
 
         return render_template('personalised.html', car_monthly=request.form['from'], 
                 public_transport_monthly=request.form['dropdowncars'], post=True, 
-                stations=stations_array)
+                stations=array)
 
 if __name__ == "__main__":
     application.run(host='127.0.0.1')

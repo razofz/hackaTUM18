@@ -142,13 +142,13 @@ def find_angle( p0, p1, p2 ):
     except ZeroDivisionError:
         return 0;
 
-stat1 = Station("Marien", 50.13916696, 11.56524034, 1)
-stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
-print(getMonthlyPriceTransportation(stat1, stat2))
+# stat1 = Station("Marien", 50.13916696, 11.56524034, 1)
+# stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
+# print(getMonthlyPriceTransportation(stat1, stat2))
 
-allStations = getStations()
-for stationNames in allStations:
-    print(stationNames.name)
+# allStations = getStations()
+# for stationNames in allStations:
+#     print(stationNames.name)
 
 
 def getPrize(station1, station2):
@@ -229,3 +229,4 @@ compareStations(stat1, stat2)
 #marien = Stations("marienplatz", 48.13, 11.57, 1)
 #print ("The station " + marien.name)
 '''
+
