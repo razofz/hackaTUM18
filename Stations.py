@@ -29,6 +29,35 @@ class Station:
         self.latitude = latitude
         self.ring = ring
 
+
+def getStations():
+
+    with open('alldata.csv', newline='') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        i = 0
+        array = []
+        for row in spamreader:
+            a = ''.join(row).split(";")
+
+            ring = a[6].split(",")
+            if (a[3] == "München"):
+                i = i + 1
+
+                try:
+                    b = a[10]
+                    if a[10][-1:] == ",":
+                        b = a[10][:-1]
+                    array.append(Station(a[1], float(a[9].replace(',','.')), float(b.replace(',','.')), ring[0]))
+                    #print(b)
+                except ValueError:
+                    y = 0
+                # print(float(a[9])/pow(10,8))
+                # print(ring[0])
+
+        return array
+
+'''
+#previous get Stations
 def getStations():
     ifile = open('alldata.csv', "r")
     read = csv.reader(ifile)
@@ -46,7 +75,7 @@ def getStations():
             #print(float(a[9])/pow(10,8))
             #print(ring[0])
     return array
-
+'''
 #get the distance between stations (KM)
 def getStationsDistance(station1, station2):
     #xDif = abs(station1.latitude - station2.latitude)
@@ -113,10 +142,13 @@ def find_angle( p0, p1, p2 ):
     except ZeroDivisionError:
         return 0;
 
-stat1 = Station("Marien", 48.13916696, 11.56524034, 1)
+stat1 = Station("Marien", 50.13916696, 11.56524034, 1)
 stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
 print(getMonthlyPriceTransportation(stat1, stat2))
 
+allStations = getStations()
+for stationNames in allStations:
+    print(stationNames.name)
 
 '''
 
