@@ -161,10 +161,25 @@ def getDailyPrice(station1, station2):
     print(rings)
     print(prize)
     '''
-stat1 = Station("Marien", 50.13916696, 11.56524034, 1)
-stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
-print(getDailyPrice(stat1, stat2))
 
+def getBicycleCalories(km):
+
+    return km/10 * 300
+
+
+
+
+
+
+stat1 = Station("Marien", 49.13916696, 11.56524034, 1)
+stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 1)
+dist = getStationsDistance(stat1, stat2)
+
+print(getMonthlyPriceTransportation(stat1, stat2))
+print(dist)
+cars = getAllCars()
+print(cars[0].getMonthlyLossofValue(dist))
+print(getBicycleCalories(dist))
 
 
 '''
