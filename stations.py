@@ -165,10 +165,23 @@ def getBicycleCalories(km):
     return km/10 * 300
 
 
+def getStation(name, array):
+    for rows in array:
+        if rows.name.find(name):
+            x = 0
+        else:
+            return rows
+    return 0
+
+
+allStations = getStations()
+print(getStation("Mar", allStations).name)
 
 
 
 
+
+'''
 stat1 = Station("Marien", 49.13916696, 11.56524034, 1)
 stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 1)
 dist = getStationsDistance(stat1, stat2)
@@ -180,7 +193,7 @@ print(cars[0].getMonthlyLossofValue(dist))
 print(getBicycleCalories(dist))
 
 
-'''
+
 
 allStations = getStations()
 for stationNames in allStations:
