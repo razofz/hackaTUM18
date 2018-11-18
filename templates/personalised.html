@@ -1,17 +1,14 @@
 {% extends "base.html" %}
 
-{% block content %} 
+{% block content %}
 
 <div class="form-group" id="user_input">
   <!--action must be determined and must locate the python file, in which the users inputs needed-->
-  <form method='POST'> 
+  <form method='POST'>
     <p>From:</p> <input type="text" class="form-control" id="from" name="from">
     <p>To:</p> <input type="text" class="form-control" id="to" name="to"><br>
     <div class="dropdown">
-      <input class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <p id="model">Please choose your car</p>
-      </button>
-      <select class="dropdown-content" name="dropdowncars" id="drop_downcars">
+      <select class="btn btn-secondary dropdown-toggle" name="dropdowncars" id="drop_downcars">
       </select>
     </div><br><br>
     <input type="submit" class="btn btn-success" id='trigger' value="See which one is the cheapest!" />
@@ -62,8 +59,7 @@
     } );
     var cars = ["Small Car","Family Car","SUV","Family Bus","Pickup"]
     for(var i = 0; i <cars.length; i++){
-        $("#drop_downcars").append("<option class='clickcar' id='"+cars[i]+"'>"+cars[i]+"</option>")
-        // $("#drop_downcars").append("<option type="button" class='clickcar' id='"+cars[i]+"'>"+cars[i]+"</option>")
+        $("#drop_downcars").append("<option>"+cars[i]+"</option>")
     }
     $(".clickcar").click(function(){
         $("#model").replaceWith("<p id='model'>"+this.id+"</p>")
