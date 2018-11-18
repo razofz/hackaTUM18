@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
-import Stations
+import stations
 application = Flask(__name__)
+array = []
 stations_array=[];
-stations_array=Stations.getStations()
+stations_array=stations.getStations()
 
 @application.route("/")
 def landing():
