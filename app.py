@@ -16,9 +16,8 @@ def personalised():
         for station in stations_array:
             array.append(station.name)
 
-
     if request.method == 'GET':
-        return render_template('personalised.html', post=False, stations=array)
+        return render_template('personalised.html', post=False, stations=array, alert_user=False)
     else:
         print(request.form['dropdowncars'])
         car = getCar(request.form['dropdowncars'])
@@ -28,15 +27,16 @@ def personalised():
         toStation = getStation(request.form['to'])
         distance = getStationsDistance(fromStation, toStation)
 
+        incorrect_stations = False
         if fromStation.name == "" or toStation.name == "":
-            correct_stations = False
+            incorrect_stations = True
 
         return render_template('personalised.html',
             car_monthly=(car.getMonthlyPriceGas(distance)+car.getMonthlyLossofValue(distance)),
             car_daily=(car.getDailyPriceGas(distance)+car.getDailyLossofValue(distance)),
             public_transport_monthly=getMonthlyPriceTransportation(fromStation, toStation),
             public_transport_daily=getDailyPrice(fromStation, toStation),
-            post=True, stations=array, alert_user=(not correct_stations))
+            post=True, stations=array, alert_user=incorrect_stations)
 
 if __name__ == "__main__":
     application.run(host='127.0.0.1')
