@@ -40,7 +40,6 @@ def getStations():
             a = ''.join(row).split(";")
             ring = a[6].split(",")
             if (a[3] == "München"):
-                
                 i = i + 1
 
                 try:
@@ -182,7 +181,7 @@ def getStation(name):
             x = 0
         else:
             return rows
-    return 0
+    return Station("", 49.13916696, 11.56524034, 1)
 
 
 # allStations = getStations()

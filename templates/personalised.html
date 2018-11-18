@@ -40,6 +40,7 @@
   </table>
   <!-- dropdown menu -->
 </div>
+
 {% endif %}
 
 <script>
@@ -47,8 +48,13 @@
     $("#user_input").css({"left":"40%","top":"10%"})
     $("#trigger").css("border-radius","25%")
     $("#output_screen").css({"top":"60%","left":"30%"})
+    var stations= $("#stations").val();
+    stations = {{stations | tojson}};
+
+    console.log(stations)
+    //{{stations == ""}}
     $( function() {
-        var stations = ["Marienplatz","Odeonsplatz","Malatya" ];
+        //var stations = ['Istanbul','Malatya','Marienplatz','Ismanning','Frötmanning']
         $( "#from" ).autocomplete({
             source :stations
         });
@@ -64,8 +70,9 @@
     $(".clickcar").click(function(){
         $("#model").replaceWith("<p id='model'>"+this.id+"</p>")
     })
-</script>
+    /*function get_rid(sta){
 
-<p id="stations">{{stations}}</p>
+    }*/
+</script>
 
 {% endblock %}
