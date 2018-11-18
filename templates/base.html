@@ -13,11 +13,9 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
   </head>
 
-<!--   could do a `block body` here --!>
   <body class="text-center" background="{{ url_for('static', filename='img/munich-skyline-faded.png') }}">
 
       <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
@@ -32,15 +30,20 @@
         <footer class="mastfoot mt-auto">
           <div class="inner footer">
           This web app was made as a part of <a href="https://hack.tum.de/">
-          HackaTUM 2018</a>, see our project
-          <a href="https://devpost.com/software/carspar">here</a>.
+            HackaTUM 2018</a>, <br />
+          see our project documentation
+          <a href="https://devpost.com/software/carspar">here</a>
+          and our GitHub repo 
+          <a href="https://github.com/razofz/hackaTUM18">here</a>.
           </div>
         </footer>
       </div>
 
   </body>
 
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<!--       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> --!>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"><\/script>')</script>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

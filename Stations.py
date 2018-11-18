@@ -114,6 +114,7 @@ def getMonthlyPriceTransportation(station1, station2):
             return array[0]
         else:
             return array[abs(station1.ring - station2.ring) - 1]
+        x = 0
     elif(angle < 90):
         return array[max(station1.ring, station2.ring)-5]
     else:
@@ -126,12 +127,11 @@ def getAllCars():
 
     return array
 
-
-
-
-
-
-
+def findAngle( p0, p1, p2 ):
+    a = (p1[0]-p0[0])**2 + (p1[1]-p0[1])**2
+    b = (p1[0]-p2[0])**2 + (p1[1]-p2[1])**2
+    c = (p2[0]-p0[0])**2 + (p2[1]-p0[1])**2
+    return acos( (a+b-c) / sqrt(4*a*b) ) * 180/pi
 
 def find_angle( p0, p1, p2 ):
     try:
@@ -150,6 +150,50 @@ allStations = getStations()
 for stationNames in allStations:
     print(stationNames.name)
 
+
+def getPrize(station1, station2):
+    p0 = [station1.longitude,station1.latitude]
+    p1 = [48.1364342160178, 11.56524034 ]
+    p2 = [station1.longitude, station2.latitude]
+
+    a = find_angle(p0,p1,p2)
+    rings = 0
+    if a<30 or a>330:
+        rings = abs(station1.ring - station2.ring)
+    elif ((a>=30) and (a<60)) or (a>=300 and a<330):
+        rings = max(station1.ring , station2.ring) - 3
+    elif a>=60 and a<300:
+        rings = max(station1.ring , station2.ring)
+
+    prize = 0
+    if (station1.ring%4 == 0):
+        if rings<=4:
+            prize = 2.90
+        elif rings <= 8:
+            prize = 5.80
+        elif rings <= 12:
+            prize = 8.70
+        elif 1==1:
+            prize = 11.60
+    else:
+        if rings<4:
+            prize = 2.90
+        elif rings < 8:
+            prize = 5.80
+        elif rings < 12:
+            prize = 8.70
+        elif 1==1:
+            prize = 11.60
+    print(a)
+    print(rings)
+    print(prize)
+
+
+stat1 = Station("Marien", 49.13916696, 11.56524034, 1)
+stat2 = Station("Karlsplatz", 48.13643422, 11.57765115, 4)
+print(getPrize(stat1, stat2))
+
+
 '''
 
 a = getAllCars()
@@ -160,13 +204,14 @@ print(a[0].getMonthlyLossofValue(10))
 
 print (find_angle((12.92473, 77.6183), (12.92512, 77.61923), (12.92541, 77.61985)))
 
-#prints all the starion names
 allStations = getStations()
 for stationNames in allStations:
     print(stationNames.name)
 
 
-
+allStations = getStations()
+for stationNames in allStations:
+    print(stationNames.name)
 
 
 a = getStations()
