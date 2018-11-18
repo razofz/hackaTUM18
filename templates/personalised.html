@@ -51,6 +51,15 @@
     var stations= $("#stations").val();
     stations = {{stations | tojson}};
 
+    $("#trigger").click(function(){
+        var from = $("#from")
+        var to = $("#to")
+        var i
+        for(i = 0; i < stations.length && from = stations[i] && to = stations[i];i++)
+        if(i == stations.length){
+            window.alert("Please check, if you write the stations correctly.")
+        }
+    })
     console.log(stations)
     //{{stations == ""}}
     $( function() {
