@@ -17,6 +17,10 @@ a:hover {
   color: #fff;
 }
 
+.popover-header {
+  color: black;
+}
+
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,

@@ -38,9 +38,9 @@ def getStations():
         array = []
         for row in spamreader:
             a = ''.join(row).split(";")
-
             ring = a[6].split(",")
-            if (a[3] == "München"):
+            if (a[3] == "MÃ¼nchen"):
+
                 i = i + 1
 
                 try:
@@ -165,8 +165,22 @@ def getBicycleCalories(km):
     return km/10 * 300
 
 
+def getStation(name):
+    array = getStations()
+    for rows in array:
+        if rows.name.find(name):
+            x = 0
+        else:
+            return rows
+    return Station("", 49.13916696, 11.56524034, 1)
 
 
+allStations = getStations()
+print(getStation("Mar").name)
+'''
+
+allStations = getStations()
+print(getStation("Mar").name)
 
 
 stat1 = Station("Marien", 49.13916696, 11.56524034, 1)
@@ -180,7 +194,7 @@ print(cars[0].getMonthlyLossofValue(dist))
 print(getBicycleCalories(dist))
 
 
-'''
+
 
 allStations = getStations()
 for stationNames in allStations:

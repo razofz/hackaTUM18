@@ -3,12 +3,27 @@
 {% block content %} 
 
   <main role="main" class="">
-  <h1 class="cover-heading d-flex align-items-center justify-content-center">Save {{ avg_saved }} € per month!</h1>
+  <h1 class="cover-heading d-flex align-items-center justify-content-center">
+    Save &nbsp;
+    <span type="button" class="badge badge-info" data-toggle="popover" 
+      data-placement="top"
+      title="How did we come up with this?" 
+      data-content="Avg. travelling distance public transport = 9.4 km,
+      monthly ticket for 3 rings (~13 km) = 66.6€.
+      Common family car (Passat) price / km = .572€ -> 118€ / month">
+      <b>{{ avg_saved }}€</b>
+    </span>
+     &nbsp; per month!</h1>
     <p class="lead">
     by using public transport instead of your car</p>
-
     <a href="personalised" class="btn btn-lg btn-secondary">See what <i>you</i> can save!</a>
 
   </main>
+
+  <script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+  </script>
 
 {% endblock %}
